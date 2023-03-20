@@ -2,14 +2,21 @@ import wally from "../images/wally.png";
 import wallyData from "../characterData";
 
 function Main(props) {
-  //   console.log(props.coordinates);
+  console.log(props);
   const styles = {
     left: props.coordinates.x + "%",
     top: props.coordinates.y + "%",
   };
 
   const wallyName = wallyData.map((data) => {
-    return <div key={data.id}>{data.name}</div>;
+    return (
+      <div
+        className="p-3 cursor-pointer text-sm hover:text-base hover:font-bold hover:ease-in-out duration-300"
+        key={data.id}
+      >
+        {data.name}
+      </div>
+    );
   });
 
   return (
@@ -24,7 +31,7 @@ function Main(props) {
         ""
       ) : (
         <span
-          className=" absolute w-45 h-45 bg-white translate-translate"
+          className=" absolute max-w-md max-h-52 bg-gray-100 translate-translate grid rounded-md"
           style={styles}
         >
           {wallyName}

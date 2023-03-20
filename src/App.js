@@ -2,11 +2,19 @@ import Navbar from "./components/Navbar";
 import Main from "./components/Main";
 import "./index.css";
 import { useState } from "react";
-// import { } from "react";
+import { db } from "./firebase";
 
 function App() {
   const [coordinates, setCoordinates] = useState([]);
 
+  // const [originalCoordinates, setOriginalCoordinates] = useState(characterData);
+
+  // function writeToDatabase() {
+  //   const nan = nanoid();
+  //   set(ref(db, `/${nan}`), {
+  //     originalCoordinates,
+  //   });
+  // }
   // const callBackRef = useCallback(domNode => {
   //   if()
   // })
