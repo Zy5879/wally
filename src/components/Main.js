@@ -13,7 +13,9 @@ function Main(props) {
       <div
         className="p-3 cursor-pointer text-sm hover:text-base hover:font-bold hover:ease-in-out duration-300"
         key={data.id}
-        onClick={props.boxClick}
+        onClick={() => {
+          props.checkValidation(data.name);
+        }}
         // onClick={() => props.boxClick(data.name)}
       >
         {data.name}
