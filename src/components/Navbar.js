@@ -17,7 +17,7 @@ function Navbar(props) {
   return (
     <header className="w-full bg-black">
       <nav className="flex justify-center gap-12">{wallyMap}</nav>
-      <Timer />
+      <Timer time={props.time} />
     </header>
   );
 }

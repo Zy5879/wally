@@ -2,7 +2,7 @@ import Navbar from "./components/Navbar";
 import Main from "./components/Main";
 import "./index.css";
 import characters from "./characterData";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { app } from "./firebase";
 import { getDatabase, ref, child, get, onValue } from "firebase/database";
 
@@ -11,6 +11,21 @@ function App() {
   const [characterData, setCharacterData] = useState(characters);
   const [wally, setWally] = useState(false);
   const [time, setTime] = useState(0);
+  const [timerOn, setTimeOn] = useState(false);
+
+  useEffect(() => {
+    let interval = null;
+
+    if (timerOn) {
+      interval = setInterval(() => {
+        setTime((prevTime) => prevTime + 10);
+      }, 10);
+    } else {
+      clearInterval(interval);
+    }
+
+    return () => clearInterval(interval);
+  }, [timerOn]);
 
   function getData() {
     return new Promise((resolve, reject) => {
@@ -104,7 +119,7 @@ function App() {
 
   return (
     <div className="w-full h-full">
-      <Navbar />
+      <Navbar time={time} />
       <Main
         coordinates={coordinates}
         imageClick={imageClick}
