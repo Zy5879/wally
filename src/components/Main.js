@@ -2,7 +2,6 @@ import wally from "../images/wally.png";
 import wallyData from "../characterData";
 
 function Main(props) {
-  console.log(props);
   const styles = {
     left: props.coordinates.x + "%",
     top: props.coordinates.y + "%",

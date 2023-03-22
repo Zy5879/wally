@@ -9,8 +9,9 @@ import { getDatabase, ref, child, get, onValue } from "firebase/database";
 function App() {
   const [coordinates, setCoordinates] = useState([]);
   const [characterData, setCharacterData] = useState(characters);
+  const [wally, setWally] = useState(false);
+  const [time, setTime] = useState(0);
 
-  // console.log(characterData);
   function getData() {
     return new Promise((resolve, reject) => {
       let map = new Map();
@@ -19,7 +20,6 @@ function App() {
 
       onValue(dbRef, (snapshot) => {
         snapshot.forEach(function (snap) {
-          // console.log(snap.key + ": " + snap.val());
           map.set(snap.key, snap.val());
           resolve(map);
         });
@@ -55,46 +55,43 @@ function App() {
                 : data;
             })
           );
-          // console.log(characterData);
-          // console.log([holdData[2].name].toString() === character);
+          console.log(character);
+        } else if (
+          coordinates.x >= 80 &&
+          coordinates.x <= 85 &&
+          coordinates.y >= 30 &&
+          coordinates.y <= 37.5 &&
+          holdData[1].name.toString() === character
+        ) {
+          setCharacterData((prevData) =>
+            prevData.map((data) => {
+              return data.name === character
+                ? { ...data, isClicked: (data.isClicked = true) }
+                : data;
+            })
+          );
+          console.log(character);
+        } else if (
+          coordinates.x >= 27 &&
+          coordinates.x <= 30.5 &&
+          coordinates.y >= 39 &&
+          coordinates.y <= 43 &&
+          holdData[0].name.toString === character
+        ) {
+          setCharacterData((prevData) =>
+            prevData.map((data) => {
+              return data.name === character
+                ? { ...data, isClicked: (data.isClicked = true) }
+                : data;
+            })
+          );
+          console.log(character);
         } else {
-          console.log("false");
+          console.log("No character found");
         }
-
-        // console.log(coordinates.x - 5, coordinates.y);
-        // if (
-        //   holdData[2].x >= coordinates.x &&
-        //   holdData[2].x <= 24 &&
-        //   holdData[2].y >= coordinates.y &&
-        //   holdData[2].y <= 30
-        // ) {
-        //   console.log("true");
-        // } else {
-        //   console.log("false");
-        // }
       });
-    // console.log(holdData[0]);
-    // console.log("hey");
   }
 
-  // getData().then((value) => {
-  //   value.forEach((item) => {
-  //     holdData.push(item);
-  //     console.log(holdData[0]);
-  //   });
-  // });
-
-  // const [originalCoordinates, setOriginalCoordinates] = useState(characterData);
-
-  // function writeToDatabase() {
-  //   const nan = nanoid();
-  //   set(ref(db, `/${nan}`), {
-  //     originalCoordinates,
-  //   });
-  // }
-  // const callBackRef = useCallback(domNode => {
-  //   if()
-  // })
   function imageClick(e) {
     let elem = e.target;
     let rect = elem.getBoundingClientRect();
@@ -102,68 +99,7 @@ function App() {
     let yc = ((e.clientY - rect.top) / (rect.bottom - rect.top)) * 100;
     setCoordinates({ x: xc, y: yc });
 
-    console.log(xc, yc);
-  }
-
-  function boxClick() {
-    // const db = getDatabase(app);
-    // const dbRef = ref(db, "coordinates");
-    // onValue(dbRef, (snapshot) => {
-    //   snapshot.forEach((snap) => {
-    //     const childData = snap.val();
-    //     console.log(snap.key);
-    //   });
-    // });
-    // console.log("hi");
-    // onValue(dbRef, (snapshot) => {
-    //   snapshot.forEach((snap) => {
-    //     const childKey = snap.key;
-    //     const childData = snap.val();
-    //     console.log(childData);
-    //   });
-    // });
-    // const dbRef = ref("coordiantes/");
-    // onValue(dbRef, (snapshot) => {
-    //   snapshot.forEach((dbRef,childSnapshot) => {
-    //     const childKey = childSnapshot.key;
-    //     const childData = childSnapshot.val();
-    //     console.log(childData);
-    //   });
-    // });
-    // const database = db;
-    // const coord_ref = ref(getDatabase());
-    // get(coord_ref, "coordinates/", "-NR-XK5NWJB3X0v6mU19")
-    //   .then((snapshot) => {
-    //     if (snapshot) {
-    //       snapshot.forEach(function (childShot) {
-    //         const data = childShot.val();
-    //         holdDb.push(data);
-    //       });
-    //     }
-    //     holdDb.map((item) => {});
-    // if (snapshot.exists()) {
-    //   let data = snapshot.val();
-    //   console.log(data);
-    // } else {
-    //   console.log("No data available");
-    // }
-    // })
-    // .catch((error) => {
-    //   console.log(error);
-    // });
-    // let holdValue = [];
-    // get(coord_ref, "coordinates/")
-    //   .then((snapshot) => {
-    //     if (snapshot.exists()) {
-    //      const data = snapshot.val();
-    //       });
-    //     } else {
-    //       console.log("No data available");
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //   });
+    // console.log(xc, yc);
   }
 
   return (

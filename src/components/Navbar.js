@@ -1,6 +1,7 @@
 import wallyData from "../characterData";
+import Timer from "./Timer";
 
-function Navbar() {
+function Navbar(props) {
   const wallyMap = wallyData.map((data) => {
     return (
       <div key={data.id}>
@@ -16,6 +17,7 @@ function Navbar() {
   return (
     <header className="w-full bg-black">
       <nav className="flex justify-center gap-12">{wallyMap}</nav>
+      <Timer />
     </header>
   );
 }
