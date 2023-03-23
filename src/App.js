@@ -1,6 +1,8 @@
 import Navbar from "./components/Navbar";
 import Main from "./components/Main";
+import StartGameModal from "./components/startGameModal";
 import "./index.css";
+import "./style.css";
 import characters from "./characterData";
 import { useState, useEffect } from "react";
 import { app } from "./firebase";
@@ -12,6 +14,7 @@ function App() {
   const [wally, setWally] = useState(false);
   const [time, setTime] = useState(0);
   const [timerOn, setTimeOn] = useState(false);
+  const [modal, setModal] = useState(true);
 
   useEffect(() => {
     let interval = null;
@@ -40,6 +43,11 @@ function App() {
         });
       });
     });
+  }
+
+  function closeModal() {
+    setModal(false);
+    setTimeOn(true);
   }
 
   function checkName(name) {
@@ -125,7 +133,10 @@ function App() {
         imageClick={imageClick}
         checkName={checkName}
         checkValidation={checkValidation}
+        modal={modal}
+        closeModal={closeModal}
       />
+      {modal && <StartGameModal modal={modal} closeModal={closeModal} />}
     </div>
   );
 }

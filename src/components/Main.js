@@ -1,3 +1,4 @@
+import StartGameModal from "./startGameModal";
 import wally from "../images/wally.png";
 import wallyData from "../characterData";
 
@@ -40,6 +41,7 @@ function Main(props) {
           {wallyName}
         </span>
       )}
+      {/* {props.modal && <StartGameModal close={props.closeModal} />} */}
     </main>
   );
 }
