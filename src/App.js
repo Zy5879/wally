@@ -1,6 +1,7 @@
 import Navbar from "./components/Navbar";
 import Main from "./components/Main";
 import StartGameModal from "./components/startGameModal";
+import EndGameModal from "./components/endGameModal";
 import "./index.css";
 import "./style.css";
 import characters from "./characterData";
@@ -10,11 +11,13 @@ import { getDatabase, ref, child, get, onValue } from "firebase/database";
 
 function App() {
   const [coordinates, setCoordinates] = useState([]);
-  const [characterData, setCharacterData] = useState(characters);
-  const [wally, setWally] = useState(false);
   const [time, setTime] = useState(0);
+  const [characterData, setCharacterData] = useState(characters);
   const [timerOn, setTimeOn] = useState(false);
   const [modal, setModal] = useState(true);
+  const [endModal, setEndModal] = useState(false);
+
+  // console.log(coordinates);
 
   useEffect(() => {
     let interval = null;
@@ -29,6 +32,14 @@ function App() {
 
     return () => clearInterval(interval);
   }, [timerOn]);
+
+  useEffect(() => {
+    const allFound = characterData.every((data) => data.isClicked);
+    if (allFound) {
+      setEndModal(true);
+      setTimeOn(false);
+    }
+  }, [characterData]);
 
   function getData() {
     return new Promise((resolve, reject) => {
@@ -99,7 +110,7 @@ function App() {
           coordinates.x <= 30.5 &&
           coordinates.y >= 39 &&
           coordinates.y <= 43 &&
-          holdData[0].name.toString === character
+          holdData[0].name.toString() === character
         ) {
           setCharacterData((prevData) =>
             prevData.map((data) => {
@@ -133,10 +144,9 @@ function App() {
         imageClick={imageClick}
         checkName={checkName}
         checkValidation={checkValidation}
-        modal={modal}
-        closeModal={closeModal}
       />
       {modal && <StartGameModal modal={modal} closeModal={closeModal} />}
+      {endModal && <EndGameModal end={endModal} time={time} />}
     </div>
   );
 }

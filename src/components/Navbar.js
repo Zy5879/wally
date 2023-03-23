@@ -10,7 +10,12 @@ function Navbar(props) {
           src={data.img}
           alt={data.name}
         />
-        <p className="text-white text-center">{data.name}</p>
+        <p
+          style={{ textDecoration: data.isClicked ? "line-through" : "none" }}
+          className="text-white text-center"
+        >
+          {data.name}
+        </p>
       </div>
     );
   });
