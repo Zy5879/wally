@@ -8,8 +8,13 @@ function EndGameModal(props) {
         </div>
         <div>
           <h3>See where you rank amongst others</h3>
-          <form>
-            <input type="text" placeholder="Enter a username" />
+          <form onSubmit={props.create}>
+            <input
+              type="text"
+              placeholder="Enter a username"
+              name="username"
+              onChange={props.handleUserName}
+            />
             <button>Check Leaderboard</button>
           </form>
         </div>

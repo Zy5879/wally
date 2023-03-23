@@ -7,12 +7,14 @@ import "./style.css";
 import characters from "./characterData";
 import { useState, useEffect } from "react";
 import { app } from "./firebase";
-import { getDatabase, ref, child, get, onValue } from "firebase/database";
+import { db } from "./firebase";
+import { getDatabase, ref, child, get, onValue, set } from "firebase/database";
 
 function App() {
   const [coordinates, setCoordinates] = useState([]);
   const [time, setTime] = useState(0);
   const [characterData, setCharacterData] = useState(characters);
+  const [username, setUserName] = useState("");
   const [timerOn, setTimeOn] = useState(false);
   const [modal, setModal] = useState(true);
   const [endModal, setEndModal] = useState(false);
@@ -136,6 +138,22 @@ function App() {
     // console.log(xc, yc);
   }
 
+  function handleUserName(e) {
+    setUserName(e.target.value);
+  }
+
+  function writeToDataBase(e) {
+    const newTime = time / 1000;
+    e.preventDefault();
+    set(ref(db, "/leaderboard"), {
+      username,
+      newTime,
+    });
+    setUserName("");
+    setTime(0);
+    console.log("sent to database");
+  }
+
   return (
     <div className="w-full h-full">
       <Navbar time={time} />
@@ -146,7 +164,14 @@ function App() {
         checkValidation={checkValidation}
       />
       {modal && <StartGameModal modal={modal} closeModal={closeModal} />}
-      {endModal && <EndGameModal end={endModal} time={time} />}
+      {endModal && (
+        <EndGameModal
+          end={endModal}
+          time={time}
+          handleUserName={handleUserName}
+          create={writeToDataBase}
+        />
+      )}
     </div>
   );
 }
