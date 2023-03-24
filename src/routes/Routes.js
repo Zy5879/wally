@@ -25,7 +25,7 @@ function RouteProvider(props) {
       ></Route>
       <Route
         path="/leaderboard"
-        element={<LeaderBoard lb={props.lb} />}
+        element={<LeaderBoard lb={props.lb} restartGame={props.restartGame} />}
       ></Route>
     </Routes>
   );

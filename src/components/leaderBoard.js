@@ -15,8 +15,15 @@ function LeaderBoard(props) {
     <div className="w-full h-full grid">
       <header className="w-full bg-black p-6 ">
         <div className="flex justify-around items-center">
-          <h1 className="text-white text-center text-3xl">LEADERBOARD</h1>
-          <button className="text-white border p-3">Play Again</button>
+          <h1 className="text-white text-center font-bold text-3xl">
+            LEADERBOARD
+          </h1>
+          <button
+            onClick={props.restartGame}
+            className="text-white font-bold border border-2 p-3 font-bold rounded-sm hover:bg-white transition-all duration-500 hover:text-black"
+          >
+            PLAY AGAIN
+          </button>
         </div>
       </header>
       <main className="p-5">

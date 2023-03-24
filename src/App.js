@@ -174,6 +174,11 @@ function App() {
     navigate("/leaderboard");
   }
 
+  function restartGame() {
+    navigate("/");
+    window.location.reload();
+  }
+
   return (
     // <div className="w-full h-full">
     //   <Navbar time={time} />
@@ -190,6 +195,7 @@ function App() {
       writeToDatabase={writeToDatabase}
       lb={lb}
       options={options}
+      restartGame={restartGame}
     />
     // </div>
   );

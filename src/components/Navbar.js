@@ -11,8 +11,11 @@ function Navbar(props) {
           alt={data.name}
         />
         <p
-          style={{ textDecoration: data.isClicked ? "line-through" : "none" }}
-          className="text-white text-center"
+          style={{
+            textDecoration: data.isClicked ? "line-through" : "none",
+            color: data.isClicked ? "gray" : "white",
+          }}
+          className="text-white text-center font-bold"
         >
           {data.name}
         </p>
