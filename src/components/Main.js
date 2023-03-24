@@ -1,4 +1,4 @@
-import StartGameModal from "./startGameModal";
+import Navbar from "./Navbar";
 import wally from "../images/wally.png";
 import wallyData from "../characterData";
 
@@ -24,25 +24,28 @@ function Main(props) {
   });
 
   return (
-    <main className="relative w-full h-full sm:w-full sm:h-full">
-      <img
-        className="w-full h-screen"
-        src={wally}
-        onMouseDown={props.imageClick}
-        alt="wally-board"
-      ></img>
-      {props.coordinates.length === 0 ? (
-        ""
-      ) : (
-        <span
-          className=" absolute max-w-md max-h-52 bg-gray-100 translate-translate grid rounded-md"
-          style={styles}
-        >
-          {wallyName}
-        </span>
-      )}
-      {/* {props.modal && <StartGameModal close={props.closeModal} />} */}
-    </main>
+    <div className="w-full h-full grid">
+      <Navbar time={props.time} />
+      <main className="relative w-full h-full sm:w-full sm:h-full">
+        <img
+          className="w-full h-screen"
+          src={wally}
+          onMouseDown={props.imageClick}
+          alt="wally-board"
+        ></img>
+        {!props.options ? (
+          ""
+        ) : (
+          <span
+            className=" absolute max-w-md max-h-52 bg-gray-100 translate-translate grid rounded-md"
+            style={styles}
+          >
+            {wallyName}
+          </span>
+        )}
+        {/* {props.modal && <StartGameModal close={props.closeModal} />} */}
+      </main>
+    </div>
   );
 }
 

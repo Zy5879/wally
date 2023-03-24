@@ -1,25 +1,25 @@
-import Navbar from "./components/Navbar";
-import Main from "./components/Main";
-import StartGameModal from "./components/startGameModal";
-import EndGameModal from "./components/endGameModal";
+import RouteProvider from "./routes/Routes";
 import "./index.css";
 import "./style.css";
 import characters from "./characterData";
 import { useState, useEffect } from "react";
 import { app } from "./firebase";
 import { db } from "./firebase";
-import { getDatabase, ref, child, get, onValue, set } from "firebase/database";
+import { useNavigate } from "react-router-dom";
+import { getDatabase, ref, push, onValue, set } from "firebase/database";
 
 function App() {
   const [coordinates, setCoordinates] = useState([]);
+  const [lb, setLb] = useState([]);
   const [time, setTime] = useState(0);
   const [characterData, setCharacterData] = useState(characters);
   const [username, setUserName] = useState("");
   const [timerOn, setTimeOn] = useState(false);
   const [modal, setModal] = useState(true);
   const [endModal, setEndModal] = useState(false);
+  const [options, setOptions] = useState(false);
 
-  // console.log(coordinates);
+  const navigate = useNavigate();
 
   useEffect(() => {
     let interval = null;
@@ -36,12 +36,25 @@ function App() {
   }, [timerOn]);
 
   useEffect(() => {
+    setLb([]);
     const allFound = characterData.every((data) => data.isClicked);
     if (allFound) {
       setEndModal(true);
       setTimeOn(false);
     }
   }, [characterData]);
+
+  useEffect(() => {
+    onValue(ref(db, "leaderboard/"), (snapshot) => {
+      let records = [];
+      snapshot.forEach((snap) => {
+        let keyName = snap.key;
+        let data = snap.val();
+        records.push({ keyName, data: data });
+      });
+      setLb(records);
+    });
+  }, []);
 
   function getData() {
     return new Promise((resolve, reject) => {
@@ -126,6 +139,7 @@ function App() {
           console.log("No character found");
         }
       });
+    setOptions(false);
   }
 
   function imageClick(e) {
@@ -134,6 +148,7 @@ function App() {
     let xc = ((e.clientX - rect.left) / (rect.right - rect.left)) * 100;
     let yc = ((e.clientY - rect.top) / (rect.bottom - rect.top)) * 100;
     setCoordinates({ x: xc, y: yc });
+    setOptions(true);
 
     // console.log(xc, yc);
   }
@@ -142,38 +157,60 @@ function App() {
     setUserName(e.target.value);
   }
 
-  function writeToDataBase(e) {
-    const newTime = time / 1000;
+  function writeToDatabase(e) {
+    const completed = time / 1000;
+    const submission = new Date().toLocaleDateString();
     e.preventDefault();
-    set(ref(db, "/leaderboard"), {
+    const currentRef = ref(db, "leaderboard");
+    const addNewRef = push(currentRef);
+    set(addNewRef, {
       username,
-      newTime,
+      completed,
+      submission,
     });
     setUserName("");
     setTime(0);
     console.log("sent to database");
+    navigate("/leaderboard");
   }
 
   return (
-    <div className="w-full h-full">
-      <Navbar time={time} />
-      <Main
-        coordinates={coordinates}
-        imageClick={imageClick}
-        checkName={checkName}
-        checkValidation={checkValidation}
-      />
-      {modal && <StartGameModal modal={modal} closeModal={closeModal} />}
-      {endModal && (
-        <EndGameModal
-          end={endModal}
-          time={time}
-          handleUserName={handleUserName}
-          create={writeToDataBase}
-        />
-      )}
-    </div>
+    // <div className="w-full h-full">
+    //   <Navbar time={time} />
+    <RouteProvider
+      coordinates={coordinates}
+      imageClick={imageClick}
+      checkName={checkName}
+      checkValidation={checkValidation}
+      modal={modal}
+      closeModal={closeModal}
+      endModal={endModal}
+      time={time}
+      handleUserName={handleUserName}
+      writeToDatabase={writeToDatabase}
+      lb={lb}
+      options={options}
+    />
+    // </div>
   );
 }
 
 export default App;
+
+{
+  /* <Main
+  coordinates={coordinates}
+  imageClick={imageClick}
+  checkName={checkName}
+  checkValidation={checkValidation}
+/>
+{modal && <StartGameModal modal={modal} closeModal={closeModal} />}
+{endModal && (
+  <EndGameModal
+    end={endModal}
+    time={time}
+    handleUserName={handleUserName}
+    create={writeToDataBase}
+  />
+)} */
+}

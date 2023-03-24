@@ -1,7 +1,4 @@
-import { useNavigate } from "react-router-dom";
-
 function EndGameModal(props) {
-  const navigate = useNavigate();
   return (
     <div className="overlay">
       <div className="modal">
@@ -11,16 +8,14 @@ function EndGameModal(props) {
         </div>
         <div>
           <h3>See where you rank amongst others</h3>
-          <form onSubmit={props.create}>
+          <form onSubmit={props.writeToDatabase}>
             <input
               type="text"
               placeholder="Enter a username"
               name="username"
               onChange={props.handleUserName}
             />
-            <button onClick={() => navigate("/leaderboard")}>
-              Check Leaderboard
-            </button>
+            <button>Check Leaderboard</button>
           </form>
         </div>
       </div>
