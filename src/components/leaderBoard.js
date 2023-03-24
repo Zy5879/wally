@@ -4,13 +4,6 @@ function LeaderBoard(props) {
     return a.data.completed - b.data.completed;
   });
 
-  // const board = data.map((item, index) => (
-  //   <div key={index}>
-  //     <div>{item.data.username}</div>
-  //     <div>{item.data.completed}</div>
-  //     <div>{item.data.submission}</div>
-  //   </div>
-  // ));
   return (
     <div className="w-full h-full grid">
       <header className="w-full bg-black p-6 ">

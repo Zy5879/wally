@@ -1,6 +1,5 @@
 .modal {
   position: fixed;
-
   transform: translate(0%) scale(1);
   transition: 200ms ease-in-out;
   border: 1px solid black;

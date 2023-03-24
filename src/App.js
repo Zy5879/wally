@@ -180,8 +180,6 @@ function App() {
   }
 
   return (
-    // <div className="w-full h-full">
-    //   <Navbar time={time} />
     <RouteProvider
       coordinates={coordinates}
       imageClick={imageClick}
@@ -197,7 +195,6 @@ function App() {
       options={options}
       restartGame={restartGame}
     />
-    // </div>
   );
 }
 

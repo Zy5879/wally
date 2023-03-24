@@ -16,7 +16,6 @@ function Main(props) {
         onClick={() => {
           props.checkValidation(data.name);
         }}
-        // onClick={() => props.boxClick(data.name)}
       >
         {data.name}
       </div>
@@ -43,7 +42,6 @@ function Main(props) {
             {wallyName}
           </span>
         )}
-        {/* {props.modal && <StartGameModal close={props.closeModal} />} */}
       </main>
     </div>
   );
