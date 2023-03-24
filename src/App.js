@@ -196,21 +196,3 @@ function App() {
 }
 
 export default App;
-
-{
-  /* <Main
-  coordinates={coordinates}
-  imageClick={imageClick}
-  checkName={checkName}
-  checkValidation={checkValidation}
-/>
-{modal && <StartGameModal modal={modal} closeModal={closeModal} />}
-{endModal && (
-  <EndGameModal
-    end={endModal}
-    time={time}
-    handleUserName={handleUserName}
-    create={writeToDataBase}
-  />
-)} */
-}

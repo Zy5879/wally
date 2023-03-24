@@ -3,19 +3,20 @@ function EndGameModal(props) {
     <div className="overlay">
       <div className="modal">
         <div>
-          <h1 className="text-black">You found all the characters!</h1>
+          <h1 className="text-white">You found all the characters!</h1>
           <h2>Your time was: {props.time / 1000}</h2>
         </div>
         <div>
           <h3>See where you rank amongst others</h3>
-          <form onSubmit={props.writeToDatabase}>
+          <form onSubmit={props.writeToDatabase} className="grid mt-4">
             <input
               type="text"
               placeholder="Enter a username"
               name="username"
               onChange={props.handleUserName}
+              className="border bg-black text-white indent-2"
             />
-            <button>Check Leaderboard</button>
+            <button className="border mt-4">Check Leaderboard</button>
           </form>
         </div>
       </div>

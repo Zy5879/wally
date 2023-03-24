@@ -1,6 +1,3 @@
-import { useMemo } from "react";
-import { useTable } from "react-table";
-
 function LeaderBoard(props) {
   const data = props.lb;
   const sortData = data.sort(function (a, b) {
