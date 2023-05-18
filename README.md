@@ -9,7 +9,7 @@ Where's Waldo game! Find the characters the fastest!
 ![Screenshots](/src/images/wallyend.png)
 ![Screenshots](/src/images/wallylb.png)
 
-[LIVE PREVIEW](https://client-side-blue-vellum.onrender.com/)
+[LIVE PREVIEW](https://nimble-semifreddo-193ec7.netlify.app/)
 
 ## OVERVIEW
 
