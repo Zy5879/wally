@@ -1,70 +1,31 @@
-# Getting Started with Create React App
+# WHERE'S WALDO
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Where's Waldo game! Find the characters the fastest!
 
-## Available Scripts
+**SCREENSHOTS**
 
-In the project directory, you can run:
+![Screenshots](/src/images/wallyhome.png)
+![Screenshots](/src/images/wallystart.png)
+![Screenshots](/src/images/wallyend.png)
+![Screenshots](/src/images/wallylb.png)
 
-### `npm start`
+[LIVE PREVIEW](https://client-side-blue-vellum.onrender.com/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## OVERVIEW
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+#
 
-### `npm test`
+TECH USED: HTML, CSS, TAILWIND, REACT, REACT ROUTER FIREBASE
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Used React Router for user to navigate to leaderboard and back home once user completes game
+- Used firebase to store character coordinates, frontend grabs the coordinates from the and matches them based off user click
+- Once game is over, input fields is open, asking user for username. On submit the user's username and time is sent to firebase
+- On submit of username, all username and times that were submitted by user's are grabbed from firebase, then sorted in a leaderboard table from quickest time to slowest time
+- Responsive Design Using Tailwind
+- Mobile Friendly as well
 
-### `npm run build`
+## LESSONS LEARNED
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project was my firstime using anything backend related. Learning something new is always fun but learning to use a backend database for the first time did prove to be quite challenging. Learning how to query data from thr backend in a way that could be displayed or used in the frontend was a hard concept for me to grab, but hard work, perserverance and a google will almost always save the day. Something that in the code base that I will definitely change is the time in the leaderboard and in the end game modal. In the navbar the time works as end, but once a user starts to get into those higher times, the numbers get a little wonky. They are still able to be sorted for lowest to highest, but it's not up to my liking. Aside from that, this project continued to build on my knowledge of the fundamentals of React. I am starting to become more comfortable with React and it's nuances as well as tailwind the new css framework I've been recently working with (Which I love). Overall fun project, cheers to creating bigger and better projects!
